@@ -14,13 +14,9 @@ class Product implements JsonSerializable {
     private int $price; 
     private string $delivery; 
     private string $description; 
-    private string $id_category; 
+    private int $id_category; 
     private string $category; 
-    private string $image1; 
-    private string $image2; 
-    private string $image3; 
-    private string $image4; 
-    private string $image5; 
+    private string $images; 
 
     // id de la catégorie du produit
 
@@ -60,7 +56,7 @@ class Product implements JsonSerializable {
      */
     public function JsonSerialize(): mixed{
         
-        return ["id_product" => $this->id_product, "name" => $this->name, "price" => $this->price, "delivery" => $this->delivery, "description" => $this->description, "id_category" => $this->id_category, "category" => $this->category,"image1" => $this->image1, "image2" => $this->image2, "image3" => $this->image3, "image4" => $this->image4, "image5" => $this->image5];
+        return ["id_product" => $this->id_product, "name" => $this->name, "price" => $this->price, "delivery" => $this->delivery, "description" => $this->description, "id_category" => $this->id_category, "category" => $this->category,"images" => $this->images];
     }
 
     /**
@@ -85,9 +81,9 @@ class Product implements JsonSerializable {
     /**
      * Get the value of idcategory
      */ 
-    public function getIdcategory()
+    public function getId_category()
     {
-        return $this->idcategory;
+        return $this->id_category;
     }
 
     /**
@@ -95,7 +91,7 @@ class Product implements JsonSerializable {
      *
      * @return  self
      */ 
-    public function setIdcategory(int $idcategory): self
+    public function setId_category(int $idcategory): self
     {
         $this->id_category = $idcategory;
         return $this;
@@ -175,9 +171,9 @@ class Product implements JsonSerializable {
     /**
      * Get the value of image1
      */ 
-    public function getImage1()
+    public function getImages()
     {
-        return $this->image1;
+        return $this->images;
     }
 
     /**
@@ -185,89 +181,9 @@ class Product implements JsonSerializable {
      *
      * @return  self
      */ 
-    public function setImage1($image1)
+    public function setImages($images)
     {
-        $this->image1 = $image1;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of image2
-     */ 
-    public function getImage2()
-    {
-        return $this->image2;
-    }
-
-    /**
-     * Set the value of image2
-     *
-     * @return  self
-     */ 
-    public function setImage2($image2)
-    {
-        $this->image2 = $image2;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of image3
-     */ 
-    public function getImage3()
-    {
-        return $this->image3;
-    }
-
-    /**
-     * Set the value of image3
-     *
-     * @return  self
-     */ 
-    public function setImage3($image3)
-    {
-        $this->image3 = $image3;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of image4
-     */ 
-    public function getImage4()
-    {
-        return $this->image4;
-    }
-
-    /**
-     * Set the value of image4
-     *
-     * @return  self
-     */ 
-    public function setImage4($image4)
-    {
-        $this->image4 = $image4;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of image5
-     */ 
-    public function getImage5()
-    {
-        return $this->image5;
-    }
-
-    /**
-     * Set the value of image5
-     *
-     * @return  self
-     */ 
-    public function setImage5($image5)
-    {
-        $this->image5 = $image5;
+        $this->images = $images;
 
         return $this;
     }

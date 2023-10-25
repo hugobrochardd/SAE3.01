@@ -30,7 +30,7 @@ class ProductRepository extends EntityRepository {
             permet de vérifier que la valeur transmise est "safe" et de se prémunir
             d'injection SQL.
         */
-        $requete = $this->cnx->prepare("SELECT `id_product`, `name`, `category`, `id_category`,`price`, `delivery`, `description`, `image1`, `image2`, `image3`, `image4`, `image5` FROM `Product` INNER JOIN Categories ON Product.id_category = Categories.id_category WHERE id_product=:value"); // prepare la requête SQL
+        $requete = $this->cnx->prepare("SELECT `id_product`, `name`, `category`, Product.id_category,`price`, `delivery`, `description`, `images` FROM `Product` INNER JOIN Categories ON Product.id_category = Categories.id_category WHERE id_product=:value"); // prepare la requête SQL
         $requete->bindParam(':value', $id); // fait le lien entre le "tag" :value et la valeur de $id
         $requete->execute(); // execute la requête
         $answer = $requete->fetch(PDO::FETCH_OBJ);
@@ -42,19 +42,15 @@ class ProductRepository extends EntityRepository {
         $p->setPrice($answer->price);
         $p->setDelivery($answer->delivery);
         $p->setDescription($answer->description);
-        $p->setIdcategory($answer->id_category);
-        $p->setImage1($answer->image1);
-        $p->setImage2($answer->image2);
-        $p->setImage3($answer->image3);
-        $p->setImage4($answer->image4);
-        $p->setImage5($answer->image5);
+        $p->setId_category($answer->id_category);
+        $p->setImages($answer->images);
         return $p;
     }
 
     public function findAll(): array {
 
        
-        $requete = $this->cnx->prepare("SELECT `id_product`, `name`, `category`, `id_category`,`price`, `delivery`, `description`, `image1`, `image2`, `image3`, `image4`, `image5` FROM `Product` INNER JOIN Categories ON Product.id_category = Categories.id_category WHERE 1");
+        $requete = $this->cnx->prepare("SELECT `id_product`, `name`, `category`, Product.id_category,`price`, `delivery`, `description`, `images` FROM `Product` INNER JOIN Categories ON Product.id_category = Categories.id_category WHERE 1");
         $requete->execute();
         $answer = $requete->fetchAll(PDO::FETCH_OBJ);
 
@@ -65,12 +61,9 @@ class ProductRepository extends EntityRepository {
             $p->setPrice($obj->price);
             $p->setDelivery($obj->delivery);
             $p->setDescription($obj->description);
-            $p->setIdcategory($obj->id_category);
-            $p->setImage1($obj->image1);
-            $p->setImage2($obj->image2);
-            $p->setImage3($obj->image3);
-            $p->setImage4($obj->image4);
-            $p->setImage5($obj->image5);
+            $p->setId_category($obj->id_category);
+            $p->setCategory($obj->category);
+            $p->setImages($obj->images);
             array_push($res, $p);
         }
        
@@ -78,10 +71,10 @@ class ProductRepository extends EntityRepository {
     }
 
 
-    public function findByCategory($cat): array {
+    public function findAllByCategory($cat): array {
 
        
-        $requete = $this->cnx->prepare("SELECT `id_product`, `name`, `category`, `id_category`,`price`, `delivery`, `description`, `image1`, `image2`, `image3`, `image4`, `image5` FROM `Product` INNER JOIN Categories ON Product.id_category = Categories.id_category WHERE category=:value;");
+        $requete = $this->cnx->prepare("SELECT `id_product`, `name`, `category`, Product.id_category,`price`, `delivery`, `description`, `images` FROM `Product` INNER JOIN Categories ON Product.id_category = Categories.id_category WHERE category=:value;");
         $requete->bindParam(':value', $cat); // fait le lien entre le "tag" :value et la valeur de $id
         $requete->execute();
         $answer = $requete->fetchAll(PDO::FETCH_OBJ);
@@ -93,13 +86,9 @@ class ProductRepository extends EntityRepository {
             $p->setPrice($obj->price);
             $p->setDelivery($obj->delivery);
             $p->setDescription($obj->description);
-            $p->setIdcategory($obj->id_category);
+            $p->setId_category($obj->id_category);
             $p->setCategory($obj->category);
-            $p->setImage1($obj->image1);
-            $p->setImage2($obj->image2);
-            $p->setImage3($obj->image3);
-            $p->setImage4($obj->image4);
-            $p->setImage5($obj->image5);
+            $p->setImages($obj->images);
             array_push($res, $p);
         }
        
@@ -129,11 +118,7 @@ class ProductRepository extends EntityRepository {
         $requete->bindParam(':delivery', $delivery );
         $requete->bindParam(':description', $description );
         $requete->bindParam(':idcategory', $idcat);
-        $requete->bindParam(':image1', $image1);
-        $requete->bindParam(':image2', $image2);
-        $requete->bindParam(':image3', $image3);
-        $requete->bindParam(':image4', $image4);
-        $requete->bindParam(':image5', $image5);
+        $requete->bindParam(':images', $images);
 
         $answer = $requete->execute(); // an insert query returns true or false. $answer is a boolean.
 

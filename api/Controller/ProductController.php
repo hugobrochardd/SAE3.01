@@ -51,13 +51,10 @@ class ProductController extends Controller {
         $p->setPrice($obj->price);
         $p->setDelivery($obj->delivery);
         $p->setDescription($obj->description);
-        $p->setIdcategory($obj->id_category);
+        $p->setId_category($obj->id_category);
         $p->setCategory($obj->category);
-        $p->setImage1($obj->image1);
-        $p->setImage2($obj->image2);
-        $p->setImage3($obj->image3);
-        $p->setImage4($obj->image4);
-        $p->setImage5($obj->image5);
+        $p->setImages($obj->images);
+
 
         $ok = $this->products->save($p); 
         return $ok ? $p : false;

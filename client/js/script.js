@@ -58,8 +58,8 @@ for(item of menuItems){
 });
 }
 
-/*
-const selectItems = document.querySelectorAll(".navbar__select");
+
+const selectItems = document.querySelector(".navbar__select");
 
 selectItems.addEventListener("change", function(event) {
   document.documentElement.style.overflow = 'auto';
@@ -77,7 +77,7 @@ selectItems.addEventListener("change", function(event) {
   navbar.style.opacity = 0.85; 
 });
 
-*/
+
 
 
 
@@ -100,6 +100,7 @@ logo.addEventListener("click", function() {
   const navbar = document.querySelector(".navbar");
   navbar.style.opacity = 0; 
   window.scrollTo(0, 0);
+  init();
 });
 
 
