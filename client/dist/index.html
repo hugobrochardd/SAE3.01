@@ -23,7 +23,7 @@
       </select>
       <section class="navbar__right">
         <a class="navbar__items-desktop">Profile</a>
-        <a class="navbar__items-desktop">Cart</a>
+        <a id="cart" class="navbar__items-desktop">Cart</a>
       </section>
       <button id="openBtn" class="navbar__items-mobile">
         <span class="burger-icon">
@@ -69,51 +69,7 @@
 
     <div class="content">
 
-      <section class="products">
-          <article class="product">
-            <section class="product__images">
-              <div class="product__cover"><img id="productImage" src="../assets/Box/Box product SET1/BOX_6f864081-e05c-4bb7-934c-6284ea70e1c4_1296x.png.webp" alt=""></div>
-              <ul class="product__minia">
-                <li onclick="changeImage(this,'../assets/Box/Box product SET1/BOX_6f864081-e05c-4bb7-934c-6284ea70e1c4_1296x.png.webp')" class="product-selected"><img src="../assets/Box/Box product SET1/BOX_6f864081-e05c-4bb7-934c-6284ea70e1c4_1296x.png.webp" alt=""></li>
-                <li onclick="changeImage(this,'../assets/Box/Box product SET1/BOXSET1CD_1296x.png.webp')"><img src="../assets/Box/Box product SET1/BOXSET1CD_1296x.png.webp" alt=""></li>
-                <li onclick="changeImage(this,'../assets/Box/Box product SET1/OFFSETTEARSTEE1SHOT1_1296x.png.webp')"><img src="../assets/Box/Box product SET1/OFFSETTEARSTEE1SHOT1_1296x.png.webp" alt=""></li>
-                <li onclick="changeImage(this,'../assets/Box/Box product SET1/OFFSETTEARSTEE1SHOT2_1296x.png.webp')"><img src="../assets/Box/Box product SET1/OFFSETTEARSTEE1SHOT2_1296x.png.webp" alt=""></li>
-                <li onclick="changeImage(this,'../assets/Box/Box product SET1/SETITOFFBOXSET1.2_1080x.png.webp')"><img src="../assets/Box/Box product SET1/SETITOFFBOXSET1.2_1080x.png.webp" alt=""></li>
-              </ul>
-            </section>
-            <section class="product__text">
-              <h2 class="product__name">Set it off CD (main cover)</h3>
-              <h3 class="product__price">$45.00</h4>
-                <div class="product__options">
-                  <div class="product__option">
-                    <h3 class="product__option-title">sizes</h3>
-                    <select class="product__option-select product__select" name="sizes">
-                      <optgroup label="sizes"></optgroup>
-                      <option>XS</option>
-                      <option>S</option>
-                      <option selected>M</option>
-                      <option>L</option>
-                      <option>XL</option>
-                    </select>
-                  </div>
-                  <div class="product__option">
-                    <h3 class="product__option-title">quantity</h3>
-                    <select class="product__option-select product__select" name="quantity">
-                      <optgroup label="quantity"></optgroup>
-                      <option selected>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                    </select>
-                  </div>
-                </div>
-    
-              <p class="product__delivery">ITEM IS A PRE-ORDER AND SHIPS IN 7-8 WEEKS</p>
-              <p class="product__description">IN COLLABORATION WITH DENIM TEARS, SCREEN PRINTED FRONT + BACK GRAPHICS, HEAVYWEIGHT HOODIE MADE IN USA, 100% COTTON</p>
-              <button class="product__button">ADD TO CART</button>
-            </section>
-          </article>
-      </section>
+
 
 
 
@@ -354,10 +310,10 @@
 
 
 
-    <template id="card">
-        <article class="card">
-          <div class="card__cover"><img src="{{image1}}" alt=""></div>
-          <section class="card__description">
+    <template id="cards">
+        <article data-id="{{id_product}}" class="card">
+          <div data-id="{{id_product}}" class="card__cover"><img src="{{image1}}" alt=""></div>
+          <section data-id="{{id_product}}" class="card__description">
             <h3>{{name}}</h3>
             <p>${{price}}</p>
           </section>
@@ -371,7 +327,7 @@
 
         <section class="home__news">
 
-          <article class="cardxl">
+          <article data-id="{{id_productXL}}" class="cardxl">
             <div class="cardxl__cover"><img src="{{image1XL}}" alt=""></div>
             <section class="cardxl__description">
               <h3>{{nameXL}}</h3>
@@ -382,7 +338,7 @@
 
           <section class="home__news-small">
 
-            <article class="card">
+            <article data-id="{{id_productNews1}}" class="card">
               <div class="card__cover"><img src="{{image1News1}}" alt=""></div>
               <section class="card__description">
                 <h3>{{nameNews1}}</h3>
@@ -390,7 +346,7 @@
               </section>
             </article>
     
-            <article class="card">
+            <article data-id="{{id_productNews2}}" class="card">
               <div class="card__cover"><img src="{{image1News2}}" alt=""></div>
               <section class="card__description">
                 <h3>{{nameNews2}}</h3>
@@ -407,7 +363,7 @@
 
           <section class="home__line-main">
 
-            <article class="card">
+            <article data-id="{{id_productLine1-1}}" class="card">
               <div class="card__cover"><img src="{{image1Line1-1}}" alt=""></div>
               <section class="card__description">
                 <h3>{{nameLine1-1}}</h3>
@@ -415,7 +371,7 @@
               </section>
             </article>
 
-            <article class="card">
+            <article data-id="{{id_productLine1-2}}" class="card">
               <div class="card__cover"><img src="{{image1Line1-2}}" alt=""></div>
               <section class="card__description">
                 <h3>{{nameLine1-2}}</h3>
@@ -426,7 +382,7 @@
           </section>
 
 
-          <article class="card">
+          <article data-id="{{id_productLine1-3}}" class="card">
             <div class="card__cover"><img src="{{image1Line1-3}}" alt=""></div>
             <section class="card__description">
               <h3>{{nameLine1-3}}</h3>
@@ -436,7 +392,7 @@
 
         </section>
 
-        <article class="cardLarge">
+        <article data-id="{{id_productL}}" class="cardLarge">
           <div class="cardLarge__cover"><img src="{{image1L}}" alt=""></div>
           <section class="cardLarge__description">
             <h3>{{nameL}}</h3>
@@ -449,7 +405,7 @@
 
           <section class="home__line-main">
 
-            <article class="card">
+            <article data-id="{{id_productLine2-1}}" class="card">
               <div class="card__cover"><img src="{{image1Line2-1}}" alt=""></div>
               <section class="card__description">
                 <h3>{{nameLine2-1}}</h3>
@@ -457,7 +413,7 @@
               </section>
             </article>
 
-            <article class="card">
+            <article data-id="{{id_productLine2-2}}" class="card">
               <div class="card__cover"><img src="{{image1Line2-2}}" alt=""></div>
               <section class="card__description">
                 <h3>{{nameLine2-2}}</h3>
@@ -468,7 +424,7 @@
           </section>
 
 
-          <article class="card">
+          <article data-id="{{id_productLine2-3}}" class="card">
             <div class="card__cover"><img src="{{image1Line2-3}}" alt=""></div>
             <section class="card__description">
               <h3>{{nameLine2-3}}</h3>
@@ -501,10 +457,54 @@
     </template>
 
 
+    <template id="product">
+      <section class="products">
+        <article class="product">
+          <section class="product__images">
+            <div class="product__cover"><img id="productImage" src="{{imagecover}}" alt=""></div>
+            <ul class="product__minia">
+              {{listimages}}
+            </ul>
+          </section>
+          <section class="product__text">
+            <h2 class="product__name">{{name}}</h3>
+            <h3 class="product__price">${{price}}</h4>
+              <div class="product__options">
+                <div class="product__option">
+                  <h3 class="product__option-title">{{option}}</h3>
+                  <select class="product__option-select product__select" name="sizes">
+                    <optgroup label="{{option}}"></optgroup>
+                    {{listoptions}}
+                  </select>
+                </div>
+                <div class="product__option">
+                  <h3 class="product__option-title">quantity</h3>
+                  <select class="product__option-select product__select" name="quantity">
+                    <optgroup label="quantity"></optgroup>
+                    <option selected>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                  </select>
+                </div>
+              </div>
+
+            <p class="product__delivery">{{delivery}}</p>
+            <p class="product__description">{{description}}</p>
+            <button class="product__button">ADD TO CART</button>
+          </section>
+        </article>
+      </section>
+    </template>
 
 
+    <template id="product-images">
+      <li onclick="changeImage(this,'{{image}}')"><img src="{{image}}" alt=""></li>
+    </template>
 
-
+    <template id="product-options">
+      <option>{{option}}</option>
+    </template>
 
 
 

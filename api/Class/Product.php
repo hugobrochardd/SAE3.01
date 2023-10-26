@@ -17,6 +17,8 @@ class Product implements JsonSerializable {
     private int $id_category; 
     private string $category; 
     private string $images; 
+    private string $option; 
+    private string $options; 
 
     // id de la catégorie du produit
 
@@ -56,7 +58,8 @@ class Product implements JsonSerializable {
      */
     public function JsonSerialize(): mixed{
         
-        return ["id_product" => $this->id_product, "name" => $this->name, "price" => $this->price, "delivery" => $this->delivery, "description" => $this->description, "id_category" => $this->id_category, "category" => $this->category,"images" => $this->images];
+        return ["id_product" => $this->id_product, "name" => $this->name, "price" => $this->price, "delivery" => $this->delivery, "description" => $this->description, "id_category" => $this->id_category, "category" => $this->category,"images" => $this->images, "option" => $this->option, "options" => $this->options];
+
     }
 
     /**
@@ -204,6 +207,46 @@ class Product implements JsonSerializable {
     public function setCategory($category)
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of option
+     */ 
+    public function getOption()
+    {
+        return $this->option;
+    }
+
+    /**
+     * Set the value of option
+     *
+     * @return  self
+     */ 
+    public function setOption($option)
+    {
+        $this->option = $option;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of options
+     */ 
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    /**
+     * Set the value of options
+     *
+     * @return  self
+     */ 
+    public function setOptions($options)
+    {
+        $this->options = $options;
 
         return $this;
     }

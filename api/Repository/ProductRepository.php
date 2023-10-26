@@ -30,7 +30,7 @@ class ProductRepository extends EntityRepository {
             permet de vérifier que la valeur transmise est "safe" et de se prémunir
             d'injection SQL.
         */
-        $requete = $this->cnx->prepare("SELECT `id_product`, `name`, `category`, Product.id_category,`price`, `delivery`, `description`, `images` FROM `Product` INNER JOIN Categories ON Product.id_category = Categories.id_category WHERE id_product=:value"); // prepare la requête SQL
+        $requete = $this->cnx->prepare("SELECT `id_product`, `name`, `category`, Product.id_category,`price`, `delivery`, `description`, `images`, `option`, `options` FROM `Product` INNER JOIN Categories ON Product.id_category = Categories.id_category INNER JOIN Options ON Product.id_option = Options.id_option WHERE id_product=:value"); // prepare la requête SQL
         $requete->bindParam(':value', $id); // fait le lien entre le "tag" :value et la valeur de $id
         $requete->execute(); // execute la requête
         $answer = $requete->fetch(PDO::FETCH_OBJ);
@@ -43,14 +43,18 @@ class ProductRepository extends EntityRepository {
         $p->setDelivery($answer->delivery);
         $p->setDescription($answer->description);
         $p->setId_category($answer->id_category);
+        $p->setCategory($answer->category);
         $p->setImages($answer->images);
+        $p->setOption($answer->option);
+        $p->setOptions($answer->options);
+
         return $p;
     }
 
     public function findAll(): array {
 
        
-        $requete = $this->cnx->prepare("SELECT `id_product`, `name`, `category`, Product.id_category,`price`, `delivery`, `description`, `images` FROM `Product` INNER JOIN Categories ON Product.id_category = Categories.id_category WHERE 1");
+        $requete = $this->cnx->prepare("SELECT `id_product`, `name`, `category`, Product.id_category,`price`, `delivery`, `description`, `images`, `option`, `options` FROM `Product` INNER JOIN Categories ON Product.id_category = Categories.id_category INNER JOIN Options ON Product.id_option = Options.id_option WHERE 1;");
         $requete->execute();
         $answer = $requete->fetchAll(PDO::FETCH_OBJ);
 
@@ -64,6 +68,8 @@ class ProductRepository extends EntityRepository {
             $p->setId_category($obj->id_category);
             $p->setCategory($obj->category);
             $p->setImages($obj->images);
+            $p->setOption($obj->option);
+            $p->setOptions($obj->options);
             array_push($res, $p);
         }
        
@@ -74,7 +80,7 @@ class ProductRepository extends EntityRepository {
     public function findAllByCategory($cat): array {
 
        
-        $requete = $this->cnx->prepare("SELECT `id_product`, `name`, `category`, Product.id_category,`price`, `delivery`, `description`, `images` FROM `Product` INNER JOIN Categories ON Product.id_category = Categories.id_category WHERE category=:value;");
+        $requete = $this->cnx->prepare("SELECT `id_product`, `name`, `category`, Product.id_category,`price`, `delivery`, `description`, `images`, `option`, `options` FROM `Product` INNER JOIN Categories ON Product.id_category = Categories.id_category INNER JOIN Options ON Product.id_option = Options.id_option WHERE category=:value;");
         $requete->bindParam(':value', $cat); // fait le lien entre le "tag" :value et la valeur de $id
         $requete->execute();
         $answer = $requete->fetchAll(PDO::FETCH_OBJ);
@@ -89,6 +95,8 @@ class ProductRepository extends EntityRepository {
             $p->setId_category($obj->id_category);
             $p->setCategory($obj->category);
             $p->setImages($obj->images);
+            $p->setOption($obj->option);
+            $p->setOptions($obj->options);
             array_push($res, $p);
         }
        
@@ -102,23 +110,24 @@ class ProductRepository extends EntityRepository {
 
 
     public function save($product){
-        $requete = $this->cnx->prepare("insert into Product (name, price, delivery, description, category) values (:name, :price, :delivery, :description, :id_category)");
+        $requete = $this->cnx->prepare("/////////////////////////////////insert into Product (name, price, delivery, description, category) values (:name, :price, :delivery, :description, :id_category)");
         $name = $product->getName();
         $price = $product->getPrice();
         $delivery = $product->getDelivery();
         $description = $product->getDescription();
         $idcat = $product->getIdcategory();
-        $image1 = $product->getImage1();
-        $image2 = $product->getImage2();
-        $image3 = $product->getImage3();
-        $image4 = $product->getImage4();
-        $image5 = $product->getImage5();
+        $images = $product->getImages();
+        $option = $product->getOption();
+        $options = $product->getOptions();
         $requete->bindParam(':name', $name );
         $requete->bindParam(':price', $price );
         $requete->bindParam(':delivery', $delivery );
         $requete->bindParam(':description', $description );
         $requete->bindParam(':idcategory', $idcat);
         $requete->bindParam(':images', $images);
+        $requete->bindParam(':option', $option);
+        $requete->bindParam(':options', $options);
+
 
         $answer = $requete->execute(); // an insert query returns true or false. $answer is a boolean.
 

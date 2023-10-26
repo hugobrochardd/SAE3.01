@@ -54,6 +54,10 @@ class ProductController extends Controller {
         $p->setId_category($obj->id_category);
         $p->setCategory($obj->category);
         $p->setImages($obj->images);
+        $p->setOption($obj->option);
+        $p->setOptions($obj->options);
+
+
 
 
         $ok = $this->products->save($p); 
