@@ -27,8 +27,9 @@ class Product {
     #images; 
     #option; 
     #options; 
+    #stock; 
 
-    constructor(id_product, name, id_category, price, delivery, description, category, images, option, options){
+    constructor(id_product, name, id_category, price, delivery, description, category, images, option, options, stock){
         this.#id_product = id_product;
         this.#name = name;
         this.#id_category = id_category;
@@ -39,6 +40,8 @@ class Product {
         this.#images = JSON.parse(images);
         this.#option = option;
         this.#options = JSON.parse(options);
+        this.#stock = stock;
+
     }
 
     getId_product(){
@@ -79,6 +82,10 @@ class Product {
 
     getOptions(){
         return this.#options;
+    }
+
+    getStock(){
+        return this.#stock;
     }
 
 }

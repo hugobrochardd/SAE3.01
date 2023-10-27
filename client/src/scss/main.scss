@@ -58,7 +58,7 @@ body{
     position: relative;
     background: url(../../assets/background.png);
     background-color: var(--clr-bg);
-    padding: 10rem 1rem 6rem 1rem;
+    padding: 4rem 1rem 6rem 1rem;
 }
   
 .home{
@@ -491,7 +491,6 @@ body{
     justify-content: center;
     align-items: center;
     text-align: center;
-
     margin: .7rem;
     min-width: 21rem;
     max-width: 41,375rem;
@@ -583,7 +582,32 @@ body{
 
 
 
+.noStock {
+    position: absolute;
+    background-color: #DC0000;
+    padding: .1rem;
+    font-size: var(--fs-200);
+    text-transform: uppercase;
+ 
+    @include media-min(768px) {
+        padding: .2rem;
+        font-size: var(--fs-300);
+    }
+}
+ 
+.lowStock {
+    position: absolute;
+    background-color: orange;
+    padding: .1rem;
+    font-size: var(--fs-200);
+    text-transform: uppercase;
 
+ 
+    @include media-min(768px) {
+        padding: .2rem;
+        font-size: var(--fs-300);
+    }
+}
 
 
 
@@ -674,7 +698,6 @@ body{
         gap: .6rem;
     }
     &__select{
-        width: 3.5rem;
         height: 1.8rem;
         border: none;
         font-size: var(--fs-00);

@@ -65,8 +65,6 @@
 
 
 
-
-
     <div class="content">
 
 
@@ -317,6 +315,12 @@
             <h3>{{name}}</h3>
             <p>${{price}}</p>
           </section>
+          <div class="noStock" style="display: {{displayNo}};">
+            <h3>Sold Out</h3>
+          </div>
+          <div class="lowStock" style="display: {{displayLow}};">
+            <h3>Soon Exhausted</h3>
+          </div>
         </article>
     </template>
 
@@ -333,6 +337,12 @@
               <h3>{{nameXL}}</h3>
               <p>${{priceXL}}</p>
             </section>
+            <div class="noStock" style="display: {{displayNoXL}};">
+              <h3>Sold Out</h3>
+            </div>
+            <div class="lowStock" style="display: {{displayLowXL}};">
+              <h3>Soon Exhausted</h3>
+            </div>
           </article>
 
 
@@ -344,6 +354,12 @@
                 <h3>{{nameNews1}}</h3>
                 <p>${{priceNews1}}</p>
               </section>
+              <div class="noStock" style="display: {{displayNoNews1}};">
+                <h3>Sold Out</h3>
+              </div>
+              <div class="lowStock" style="display: {{displayLowNews1}};">
+                <h3>Soon Exhausted</h3>
+              </div>
             </article>
     
             <article data-id="{{id_productNews2}}" class="card">
@@ -352,6 +368,12 @@
                 <h3>{{nameNews2}}</h3>
                 <p>${{priceNews2}}</p>
               </section>
+              <div class="noStock" style="display: {{displayNoNews2}};">
+                <h3>Sold Out</h3>
+              </div>
+              <div class="lowStock" style="display: {{displayLowNews2}};">
+                <h3>Soon Exhausted</h3>
+              </div>
             </article>
 
           </section>
@@ -369,6 +391,12 @@
                 <h3>{{nameLine1-1}}</h3>
                 <p>${{priceLine1-1}}</p>
               </section>
+              <div class="noStock" style="display: {{displayNoLine1-1}};">
+                <h3>Sold Out</h3>
+              </div>
+              <div class="lowStock" style="display: {{displayLowLine1-1}};">
+                <h3>Soon Exhausted</h3>
+              </div>
             </article>
 
             <article data-id="{{id_productLine1-2}}" class="card">
@@ -377,6 +405,12 @@
                 <h3>{{nameLine1-2}}</h3>
                 <p>${{priceLine1-2}}</p>
               </section>
+              <div class="noStock" style="display: {{displayNoLine1-2}};">
+                <h3>Sold Out</h3>
+              </div>
+              <div class="lowStock" style="display: {{displayLowLine1-2}};">
+                <h3>Soon Exhausted</h3>
+              </div>
             </article>
 
           </section>
@@ -388,6 +422,12 @@
               <h3>{{nameLine1-3}}</h3>
               <p>${{priceLine1-3}}</p>
             </section>
+            <div class="noStock" style="display: {{displayNoLine1-3}};">
+              <h3>Sold Out</h3>
+            </div>
+            <div class="lowStock" style="display: {{displayLowLine1-3}};">
+              <h3>Soon Exhausted</h3>
+            </div>
           </article>
 
         </section>
@@ -398,6 +438,12 @@
             <h3>{{nameL}}</h3>
             <p>${{priceL}}</p>
           </section>
+          <div class="noStock" style="display: {{displayNoL}};">
+            <h3>Sold Out</h3>
+          </div>
+          <div class="lowStock" style="display: {{displayLowL}};">
+            <h3>Soon Exhausted</h3>
+          </div>
         </article>
         
 
@@ -411,6 +457,12 @@
                 <h3>{{nameLine2-1}}</h3>
                 <p>${{priceLine2-1}}</p>
               </section>
+              <div class="noStock" style="display: {{displayNoLine2-1}};">
+                <h3>Sold Out</h3>
+              </div>
+              <div class="lowStock" style="display: {{displayLowLine2-1}};">
+                <h3>Soon Exhausted</h3>
+              </div>
             </article>
 
             <article data-id="{{id_productLine2-2}}" class="card">
@@ -419,6 +471,12 @@
                 <h3>{{nameLine2-2}}</h3>
                 <p>${{priceLine2-2}}</p>
               </section>
+              <div class="noStock" style="display: {{displayNoLine2-2}};">
+                <h3>Sold Out</h3>
+              </div>
+              <div class="lowStock" style="display: {{displayLowLine2-2}};">
+                <h3>Soon Exhausted</h3>
+              </div>
             </article>
 
           </section>
@@ -430,6 +488,12 @@
               <h3>{{nameLine2-3}}</h3>
               <p>${{priceLine2-3}}</p>
             </section>
+            <div class="noStock" style="display: {{displayNoLine2-3}};">
+              <h3>Sold Out</h3>
+            </div>
+            <div class="lowStock" style="display: {{displayLowLine2-3}};">
+              <h3>Soon Exhausted</h3>
+            </div>
           </article>
 
         </section>
@@ -458,7 +522,7 @@
 
 
     <template id="product">
-      <section class="products">
+      <section data-stock="{{stock}}" class="products">
         <article class="product">
           <section class="product__images">
             <div class="product__cover"><img id="productImage" src="{{imagecover}}" alt=""></div>
@@ -499,7 +563,7 @@
 
 
     <template id="product-images">
-      <li onclick="changeImage(this,'{{image}}')"><img src="{{image}}" alt=""></li>
+      <li class="minia" onclick="changeImage(this,'{{image}}')"><img src="{{image}}" alt=""></li>
     </template>
 
     <template id="product-options">

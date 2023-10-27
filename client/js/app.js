@@ -19,8 +19,7 @@ const logo = document.querySelector(".logo");
 const selectElementNav = document.querySelector(".navbar__select");
 const selectElementSide = document.querySelector(".sidenav__select");
 const menuItems = document.querySelectorAll(".navbar__items-desktop");
-
-
+const content = document.querySelector(".content");
 const cart = document.querySelector("#cart");
 
 
@@ -94,10 +93,7 @@ V.handler_dupliqueElement= function(targetSelector) {
 
 
 V.init = function () {
-    const cards = document.querySelectorAll(".card");
-    const cardsXL = document.querySelectorAll(".cardxl");
-    const cardsL = document.querySelectorAll(".cardLarge");
-    
+
     selectElementSide.addEventListener("change", function() {
         C.handler_changeFilter();
     });
@@ -107,34 +103,7 @@ V.init = function () {
 
 
 
-/////////////////
-
-
-for (let item of cards) {
-    item.addEventListener("click", function(ev) {
-        const articleElement = ev.currentTarget.closest("article");
-        C.handler_clickProduct(articleElement);
-    });
-}
-
-for (let item of cardsXL) {
-    item.addEventListener("click", function(ev) {
-        const articleElement = ev.currentTarget.closest("article");
-        C.handler_clickProduct(articleElement);
-    });
-}
-
-for (let item of cardsL) {
-    item.addEventListener("click", function(ev) {
-        const articleElement = ev.currentTarget.closest("article");
-        C.handler_clickProduct(articleElement);
-    });
-}
-
-
-/////////////////
-
-    cart.addEventListener("click", function(ev) {
+    content.addEventListener("click", function(ev) {
         C.handler_clickProduct(ev);
     });
 
@@ -170,7 +139,6 @@ C.handler_changeFilter = function (ev) {
     else{
         V.renderCards(M.products.findByCategory(selectedValue));
     }
-    V.init()
 }
 
 
@@ -192,16 +160,23 @@ C.handler_resetHome = function (ev) {
     navbar.style.opacity = 0; 
     window.scrollTo(0, 0);
     V.renderHome( M.products.findAll() );
-    V.init()
 }
 
 
-C.handler_clickProduct = function (card) {
+C.handler_clickProduct = function (ev) {
+    const articleElement = ev.target.closest("article");
+    console.log(articleElement)
+    if(articleElement.classList=="card"){
+        V.renderProduct( M.products.findByProduct(articleElement.dataset.id));
+    }
+    if(articleElement.classList=="cardxl"){
+        V.renderProduct( M.products.findByProduct(articleElement.dataset.id));
+    }    
+    if(articleElement.classList=="cardLarge"){
+        V.renderProduct( M.products.findByProduct(articleElement.dataset.id));
+    }
     V.handler_unsetParallax();
-    V.renderProduct( M.products.findByProduct(card.dataset.id));
 }
-
-
 
 /*
 

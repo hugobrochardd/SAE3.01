@@ -33,14 +33,12 @@ if (window.innerWidth > 850) {
 
 
 
-
-
 let previousSelected = document.querySelector('.product-selected');
 
 function changeImage(element, imageUrl) {
   document.querySelector('#productImage').src = imageUrl;
-
   if (previousSelected !== null) {
+    console.log(previousSelected)
     previousSelected.classList.remove('product-selected');
   }
   element.classList.add('product-selected');

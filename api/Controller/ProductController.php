@@ -56,6 +56,7 @@ class ProductController extends Controller {
         $p->setImages($obj->images);
         $p->setOption($obj->option);
         $p->setOptions($obj->options);
+        $p->setStock($obj->stock);
 
 
 

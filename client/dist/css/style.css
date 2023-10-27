@@ -51,7 +51,7 @@ body {
   position: relative;
   background: url(../../assets/background.png);
   background-color: var(--clr-bg);
-  padding: 10rem 1rem 6rem 1rem;
+  padding: 4rem 1rem 6rem 1rem;
 }
 
 .home {
@@ -537,6 +537,34 @@ body {
   }
 }
 
+.noStock {
+  position: absolute;
+  background-color: #DC0000;
+  padding: 0.1rem;
+  font-size: var(--fs-200);
+  text-transform: uppercase;
+}
+@media screen and (min-width: 768px) {
+  .noStock {
+    padding: 0.2rem;
+    font-size: var(--fs-300);
+  }
+}
+
+.lowStock {
+  position: absolute;
+  background-color: orange;
+  padding: 0.1rem;
+  font-size: var(--fs-200);
+  text-transform: uppercase;
+}
+@media screen and (min-width: 768px) {
+  .lowStock {
+    padding: 0.2rem;
+    font-size: var(--fs-300);
+  }
+}
+
 .product {
   display: flex;
   flex-direction: column;
@@ -634,7 +662,6 @@ body {
   gap: 0.6rem;
 }
 .product__select {
-  width: 3.5rem;
   height: 1.8rem;
   border: none;
   font-size: var(--fs-00);
