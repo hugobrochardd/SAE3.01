@@ -56,7 +56,6 @@ class ProductCollection {
     findByProduct(id_product){
         return this.#products.filter( p => p.getId_product()==id_product);
     }
-
 }
 
 

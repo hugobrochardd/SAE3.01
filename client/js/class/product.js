@@ -17,75 +17,75 @@
  */
 
 class Product {
-    #id_product;
-    #name;
-    #id_category; 
-    #price; 
-    #delivery; 
-    #description; 
-    #category; 
-    #images; 
-    #option; 
-    #options; 
-    #stock; 
+    _id_product;
+    _name;
+    _id_category; 
+    _price; 
+    _delivery; 
+    _description; 
+    _category; 
+    _images; 
+    _option; 
+    _options; 
+    _stock; 
 
     constructor(id_product, name, id_category, price, delivery, description, category, images, option, options, stock){
-        this.#id_product = id_product;
-        this.#name = name;
-        this.#id_category = id_category;
-        this.#price = price;
-        this.#delivery = delivery;
-        this.#description = description;
-        this.#category = category;
-        this.#images = JSON.parse(images);
-        this.#option = option;
-        this.#options = JSON.parse(options);
-        this.#stock = stock;
+        this._id_product = id_product;
+        this._name = name;
+        this._id_category = id_category;
+        this._price = price;
+        this._delivery = delivery;
+        this._description = description;
+        this._category = category;
+        this._images = JSON.parse(images);
+        this._option = option;
+        this._options = JSON.parse(options);
+        this._stock = stock;
 
     }
 
     getId_product(){
-        return this.#id_product;
+        return this._id_product;
     }
 
     getName(){
-        return this.#name;
+        return this._name;
     }
 
     getPrice(){
-        return this.#price;
+        return this._price;
     }
 
     getDelivery(){
-        return this.#delivery;
+        return this._delivery;
     }
 
     getDescription(){
-        return this.#description;
+        return this._description;
     }
 
     getCategory(){
-        return this.#category;
+        return this._category;
     }
 
     getImages(){
-        return this.#images;
+        return this._images;
     }
 
     getId_category(){
-        return this.#id_category;
+        return this._id_category;
     }
 
     getOption(){
-        return this.#option;
+        return this._option;
     }
 
     getOptions(){
-        return this.#options;
+        return this._options;
     }
 
     getStock(){
-        return this.#stock;
+        return this._stock;
     }
 
 }

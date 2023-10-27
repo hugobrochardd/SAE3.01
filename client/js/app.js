@@ -2,6 +2,11 @@ import { ProductCollection } from "./class/product-manager.js";
 import { HomeRenderer } from "./renderer/product-renderer.js";
 import { CardsRenderer } from "./renderer/product-renderer.js";
 import { ProductRenderer } from "./renderer/product-renderer.js";
+import { CartRenderer } from "./renderer/cart-renderer.js";
+import { CartAdder } from "./renderer/cart-renderer.js";
+import { QtyIncrease } from "./renderer/cart-renderer.js";
+import { QtyDecrease } from "./renderer/cart-renderer.js";
+import { RemoveProduct } from "./renderer/cart-renderer.js";
 
 
 
@@ -35,12 +40,22 @@ V.renderHome = function( data ){
 
 V.renderCards = function( data ){
     let htmlCards = CardsRenderer(data);
-    document.querySelector('.filters-content').innerHTML = htmlCards;
+    document.querySelector('.content').innerHTML = htmlCards;
+}
+
+V.renderCart = function(){
+  let htmlCart = CartRenderer();
+  document.querySelector('.content').innerHTML = htmlCart;
 }
 
 V.renderProduct = function( data ){
     let htmlProduct = ProductRenderer(data);
     document.querySelector('.content').innerHTML = htmlProduct;
+    let prod = document.querySelector('.products')
+    if(prod.dataset.stock=="No"){
+      let button = document.querySelector('.product__button')
+      button.style.display = "none"
+    }
 }
 
 V.handler_unsetParallax = function (ev) {
@@ -101,13 +116,16 @@ V.init = function () {
         C.handler_changeFilter();
     });
 
-
-
-    content.addEventListener("click", function(ev) {
-        C.handler_clickProduct(ev);
+    cart.addEventListener("click", function(ev) {
+      C.handler_clickCart(ev);
     });
 
-
+    content.addEventListener("click", function(ev) {
+      C.handler_addCart(ev);
+      C.handler_changeQuantity(ev)
+      C.handler_clickProduct(ev);
+      C.handler_removeProduct(ev)
+    });
 
     logo.addEventListener("click", function() {
         C.handler_resetHome();
@@ -125,20 +143,16 @@ V.init = function () {
 
 
 C.handler_changeFilter = function (ev) {
-    V.handler_unsetParallax();
-    const selectedValue = selectElementNav.value;////////////////////////////////
-    V.handler_dupliqueElement(".filters");
-    console.log(selectedValue)
-    let filters = document.querySelector('.filters');
-    filters.style.display = "";
-    document.querySelector('.content').innerHTML = ""
-    document.querySelector('.content').appendChild(filters);
+    const selectedValue = selectElementNav.value;
     if(selectedValue=="All"){
         V.renderCards( M.products.findAll() );
+        V.handler_unsetParallax();
     }
     else{
         V.renderCards(M.products.findByCategory(selectedValue));
+        V.handler_unsetParallax();
     }
+
 }
 
 
@@ -165,85 +179,68 @@ C.handler_resetHome = function (ev) {
 
 C.handler_clickProduct = function (ev) {
     const articleElement = ev.target.closest("article");
-    console.log(articleElement)
     if(articleElement.classList=="card"){
-        V.renderProduct( M.products.findByProduct(articleElement.dataset.id));
+      V.renderProduct( M.products.findByProduct(articleElement.dataset.id));
+      V.handler_unsetParallax();
     }
     if(articleElement.classList=="cardxl"){
-        V.renderProduct( M.products.findByProduct(articleElement.dataset.id));
-    }    
+      V.renderProduct( M.products.findByProduct(articleElement.dataset.id));
+      V.handler_unsetParallax();
+    }
     if(articleElement.classList=="cardLarge"){
-        V.renderProduct( M.products.findByProduct(articleElement.dataset.id));
+      V.renderProduct( M.products.findByProduct(articleElement.dataset.id));
+      V.handler_unsetParallax();
     }
-    V.handler_unsetParallax();
+    return
+
 }
 
-/*
 
-
-
-V.formatOneCard = function(data){
-  let template = document.querySelector('#card');
-  let html = template.innerHTML;
-  html = html.replace('{{image1}}', data.image1);
-  html = html.replace('{{name}}', data.name);
-  html = html.replace('{{price}}', data.price);
-  return html
+C.handler_clickCart = function (ev){
+  V.renderCart();
+  V.handler_unsetParallax();
 }
 
-V.formatAllCards = function(data){
-  let html = "";
-  for(let i = 0; i < data.length; i++){
-    html += V.formatOneCard(data[i]);
+
+C.handler_addCart = function(ev){
+  if(ev.target.dataset.btn=="add"){
+    const articleElement = ev.target.closest("article");
+    const selectElement = document.querySelector('select[name="quantity"]');
+    const optionElement = document.querySelector('select[name="option"]');
+    let product = M.products.findByProduct(articleElement.dataset.id)
+    CartAdder(product,selectElement.value,optionElement.value)
+    //objet contenant le produit, la quantité
   }
-  return html
+  return
+
 }
 
-
-
-
-
-
-
-
-
-V.formatAllCardsByCat = function(data){
-  const selectElement = document.querySelector('.navbar__select');
-  const selectedValue = selectElement.value;
-  let html = "";
-  if(selectedValue=="All"){
-    for(let i = 0; i < data.length; i++){
-        html += V.formatOneCard(data[i]);
-    }
+C.handler_changeQuantity = function(ev){
+  const articleElement = ev.target.closest("article");
+  let product = M.products.findByProduct(articleElement.dataset.id)
+  if(ev.target.dataset.qty=="+"){
+    QtyIncrease(product)
+    V.renderCart()
   }
-  else{
-    for(let i = 0; i < data.length; i++){
-      if(data[i].category==selectedValue){
-        html += V.formatOneCard(data[i]);
-      }
-    }
+  if(ev.target.dataset.qty=="-"){
+    QtyDecrease(product)
+    V.renderCart()
   }
-
-  return html
-}
-
-V.renderCards = function( data ){
-  let htmlCards = V.formatAllCards(data);
-  document.querySelector('.filters-content').innerHTML = htmlCards;
+  return
 
 }
 
-V.renderCardsByCat = function (data){
-  let htmlCards = V.formatAllCardsByCat(data);
-  console.log(htmlCards)
-  document.querySelector('.filters-content').innerHTML = htmlCards;
+C.handler_removeProduct = function(ev){
+  const articleElement = ev.target.closest("article");
+  console.log(articleElement)
+  let product = M.products.findByProduct(articleElement.dataset.id)
+  if(ev.target.dataset.rm=="rm"){
+    RemoveProduct(product)
+    V.renderCart()
+  }
+  return
 
 }
-*/
-
-
-
-
 
 
 

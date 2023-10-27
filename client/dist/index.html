@@ -299,12 +299,41 @@
       </section>
     </div>
 
+    <template id="filtre">
+      <section class="filters">
+        <h2>{{filtre}}</h2>
+        <section class="filters-content">
+          {{listproduct}}
+          </section>
+      </section>
+    </template>
 
-    <section class="filters" style="display: none;">
-      <h2>Filtered products</h2>
-      <section class="filters-content">
+
+    <template id="cart-template">
+      <section class="cart">
+        <section class="cart__nav">
+          <h2>Cart</h2>
+          <a><h3>Continue Shopping</h3></a>
         </section>
-    </section>
+        <section class="cart__titles">
+          <div class="cart__titles-first">
+            <h3>product</h3>
+            <h3>description</h3>
+          </div>
+          <div class="cart__titles-second">
+            <h3>price</h3>
+            <h3>quantity</h3>
+            <h3>total</h3>
+          </div>
+        </section>
+        <ul class="cart__products">
+          <!--Insérer les templates de cart products -->
+          {{listproduct}}
+        </ul>
+        <h3 class="cart__subtotal">SUBTOTAL : ${{total}}</h3>
+        <button class="cart__button">Check Out</button>
+      </section>
+    </template>
 
 
 
@@ -523,7 +552,7 @@
 
     <template id="product">
       <section data-stock="{{stock}}" class="products">
-        <article class="product">
+        <article class="product" data-id="{{id}}">
           <section class="product__images">
             <div class="product__cover"><img id="productImage" src="{{imagecover}}" alt=""></div>
             <ul class="product__minia">
@@ -536,7 +565,7 @@
               <div class="product__options">
                 <div class="product__option">
                   <h3 class="product__option-title">{{option}}</h3>
-                  <select class="product__option-select product__select" name="sizes">
+                  <select class="product__option-select product__select" name="option">
                     <optgroup label="{{option}}"></optgroup>
                     {{listoptions}}
                   </select>
@@ -555,7 +584,7 @@
 
             <p class="product__delivery">{{delivery}}</p>
             <p class="product__description">{{description}}</p>
-            <button class="product__button">ADD TO CART</button>
+            <button class="product__button" data-btn="add">ADD TO CART</button>
           </section>
         </article>
       </section>
@@ -569,6 +598,37 @@
     <template id="product-options">
       <option>{{option}}</option>
     </template>
+
+    <template id="cart-product">
+      <li>
+        <article data-id="{{id}}">
+          <section class="cart__product">
+            <section class="cart__product-description">
+              <div class="cart__product-cover"><img src="{{url}}" alt=""></div>
+              <div>
+                <h3 class="cart__product-name">{{name}}</h3>
+                <h3 class="cart__product-option">{{option}} : <span>{{option-selected}}</span></h3>
+              </div>
+            </section>
+            <ul class="cart__product-modality">
+              <li><span>price</span><h3 class="cart__product-price">${{price}}</h3></li>
+              <li>
+                <span>qty</span>
+                <div class="cart__product-quantity">
+                  <button class="cart__product-add" data-qty="-">-</button>
+                  <h3 class="cart__product-number">{{quantity}}</h3>
+                  <button class="cart__product-remove" data-qty="+">+</button>
+                </div>
+              </li>
+              <li><span>total</span><h3 class="cart__product-total">${{total-price}}</h3></li>
+            </ul>
+          </section>
+          <button class="cart__bin"><img data-rm="rm" src="../assets/Vector.svg" alt=""></button>
+        </article>
+      </li>
+    </template>
+
+
 
 
 

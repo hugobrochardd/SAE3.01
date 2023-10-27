@@ -3,6 +3,7 @@ import { Product } from "../class/product.js";
 const homeTemplate = document.querySelector("#home").innerHTML;
 const cardsTemplate = document.querySelector("#cards").innerHTML;
 const productTemplate = document.querySelector("#product").innerHTML;
+const filtreTemplate = document.querySelector("#filtre").innerHTML;
 const optionTemplate = document.querySelector("#product-options").innerHTML;
 const imageTemplate = document.querySelector("#product-images").innerHTML;
 
@@ -239,7 +240,17 @@ let renderHome = function(data){
     return all;
  }
 
+ let renderFiltre = function(data) {
+    let html = "";
+    let all = "";
+    let filtre = document.querySelector(".navbar__select").value;
 
+    html = filtreTemplate.replace('{{filtre}}',filtre);
+    html = html.replace('{{listproduct}}', renderCards(data));
+
+    all += html;
+    return all;
+};
 
  let renderOptions = function(data){
   
@@ -290,16 +301,15 @@ let renderHome = function(data){
         console.error( "data has to be an array of Products");
         return all;
     }
-        console.log(data)
         html = productTemplate.replace('{{imagecover}}', data[0].getImages()[0]);
         html = html.replace('{{name}}', data[0].getName());
         html = html.replace('{{price}}', data[0].getPrice());
         html = html.replace('{{delivery}}', data[0].getDelivery());
         html = html.replace('{{description}}', data[0].getDescription());
         html = html.replaceAll('{{option}}', data[0].getOption());
+        html = html.replaceAll('{{id}}', data[0].getId_product());
         html = html.replace('{{listoptions}}', renderOptions(data[0]));
         html = html.replace('{{listimages}}', renderImages(data[0]));
-        console.log(data[0].getStock())
         if(data[0].getStock()==0){
             html = html.replace('{{stock}}', "No");
         }
@@ -318,5 +328,5 @@ let renderHome = function(data){
  
 
  export {renderHome as HomeRenderer};
- export {renderCards as CardsRenderer};
+ export {renderFiltre as CardsRenderer};
  export {renderProduct as ProductRenderer};
