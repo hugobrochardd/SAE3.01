@@ -56,3 +56,10 @@ function changePopup(element){
   element.classList.add('popup-selected');
   previousPopupSelected = element;
 }
+
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+  console.log("Le mode clair est activé dans le navigateur");
+  document.body.classList.add('theme-light');
+} else {
+  console.log("Le mode sombre est activé dans le navigateur");
+}
